@@ -17,9 +17,8 @@ const CountarApp = () => {
             <button
                 onClick={
                     () => setcounter({
-                        counter1: counter.counter1 + 1,
-                        counter2: counter.counter2,
-                        counter3: counter.counter3,
+                        ...counter, 
+                        counter1: counter.counter1 +1
                     })
                 }> +1 </button>
         </>
