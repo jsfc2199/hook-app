@@ -1,20 +1,24 @@
-import { useEffect } from "react"
-
+import { useEffect } from "react";
 
 const Message = () => {
-    useEffect(() => {
-      console.log("Mensaje Montado");
-    
-      return () => {
-        console.log("Mensaje desmntado");
-      }
-    }, [])
-    
+  useEffect(() => {
+    const onMouseMove = ({ x, y }) => {
+      const coords = { x, y };
+      console.log(coords);
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+    };
+  }, []);
+
   return (
     <>
       <h3>Usuario ya exite</h3>
     </>
-  )
-}
+  );
+};
 
-export default Message
+export default Message;
