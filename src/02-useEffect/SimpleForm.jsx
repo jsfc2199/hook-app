@@ -1,29 +1,15 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import Message from './Message';
 
 
 const SimpleForm = () => {
 
     const [formsState, setformsState] = useState({
-        username:'juan',
+        username:'strider',
         email:"juan@juan.com"
     })
 
     const {username, email} = formsState
-
-    useEffect(() => {
-        console.log('useEffect');
-    }, [])
-
-    //efecto que esta pendiende del formstate
-    useEffect(() => {
-        console.log('formstate useEffect');
-    }, [formsState])
-
-    useEffect(() => {
-        console.log('email useEffect');
-    }, [email])
-
-   
 
     const onInpuntChange = ({target}) =>{
         //del name extraigo lo que es el username o email, el value es el valor que esta teniendo en ese target
@@ -42,7 +28,12 @@ const SimpleForm = () => {
       <hr />
 
       <input type="text" className="form-control" placeholder="username" name = "username" value={username} onChange={onInpuntChange}/>
+
+    {(username === 'strider2') && <Message/> }
+      
+
       <input type="email" className="form-control" placeholder="correo@correo" name = "email" value={email} onChange={onInpuntChange}/>
+
     </div>
   )
 }
