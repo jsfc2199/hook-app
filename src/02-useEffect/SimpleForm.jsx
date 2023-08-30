@@ -8,11 +8,22 @@ const SimpleForm = () => {
         email:"juan@juan.com"
     })
 
+    const {username, email} = formsState
+
     useEffect(() => {
         console.log('useEffect');
-    })
+    }, [])
 
-    const {username, email} = formsState
+    //efecto que esta pendiende del formstate
+    useEffect(() => {
+        console.log('formstate useEffect');
+    }, [formsState])
+
+    useEffect(() => {
+        console.log('email useEffect');
+    }, [email])
+
+   
 
     const onInpuntChange = ({target}) =>{
         //del name extraigo lo que es el username o email, el value es el valor que esta teniendo en ese target
