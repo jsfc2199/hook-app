@@ -17,7 +17,13 @@ export const useCounter = (initialState = 10) =>{
         setCounter(initialState)
     }
 
+    const randomNumber = () =>{
+        const random = Math.floor(Math.random() * (20 - 1 + 1) + 1)
+        setCounter(random)
+
+    }
+
     return {
-        counter, increment, decrement, reset
+        counter, increment, decrement, reset, randomNumber
     }
 }
