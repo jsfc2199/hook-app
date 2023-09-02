@@ -2,7 +2,7 @@
 
 const ShowIncrement = ({increment}) => {
   return (
-    <button onClick={() => increment()}>
+    <button onClick={() => increment(5)}>
       Incrementar
     </button>
   )
