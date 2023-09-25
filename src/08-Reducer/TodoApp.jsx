@@ -1,19 +1,26 @@
 /* eslint-disable no-unused-vars */
 import { useReducer } from "react";
 import { todoReducer } from "./todoReducer";
+import TodoList from './components/TodoList';
+import TodoAdd from './components/TodoAdd';
 
 const initialState = [
   {
     id: new Date().getTime(),
-    description: "Recolecatr prieda del alma",
+    description: "Recolectar piedra del alma",
     done: false,
   },
   {
     id: new Date().getTime() * 3,
-    description: "Recolecatr prieda del alma",
+    description: "Recolectar piedra del tiempo",
     done: false,
   },
 ];
+
+const handleNewTodo = (todo) => {
+  console.log({todo})
+}
+
 const TodoApp = () => {
   const [todos, dispatch] = useReducer(todoReducer, initialState); //el reducer no se ejecuta es decur todoReducer() NO, solo se pasa la referecia
   return (
@@ -25,27 +32,13 @@ const TodoApp = () => {
 
       <div className="row">
         <div className="col-7">
-          <ul className="list-group">
-            <li className="list-group-item d-flex justify-content-between">
-              <span className="align-self-center">itrem 1</span>
-              <button className="btn btn-danger">Borrar</button>
-            </li>
-          </ul>
+         <TodoList todos = {todos}/>
         </div>
 
         <div className="col-5">
           <h4>Agregar Todo</h4>
           <hr />
-          <form action="">
-            <input
-              type="text"
-              placeholder="que hay para hacer?"
-              className="formControl"
-            />
-            <button type="submit" className="btn btn-outline-primary mt-1">
-              Agregar
-            </button>
-          </form>
+          <TodoAdd OnNewTodo={todo => handleNewTodo(todo)}/>
         </div>
       </div>
     </>
