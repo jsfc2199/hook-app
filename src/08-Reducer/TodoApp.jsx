@@ -17,12 +17,21 @@ const initialState = [
   },
 ];
 
-const handleNewTodo = (todo) => {
-  console.log({todo})
-}
-
 const TodoApp = () => {
   const [todos, dispatch] = useReducer(todoReducer, initialState); //el reducer no se ejecuta es decur todoReducer() NO, solo se pasa la referecia
+
+  const handleNewTodo = (todo) => {
+    console.log({todo})
+  
+    const action = {
+      type: '[TODO] Add Todo',
+      payload: todo
+    }
+
+    dispatch(action) //hacemos el dispatch de la accion para que la maneje el reducer
+  }
+
+
   return (
     <>
       <h1>
