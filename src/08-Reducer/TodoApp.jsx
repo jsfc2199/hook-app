@@ -1,28 +1,29 @@
 /* eslint-disable no-unused-vars */
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { todoReducer } from "./todoReducer";
 import TodoList from './components/TodoList';
 import TodoAdd from './components/TodoAdd';
 
-const initialState = [
-  {
-    id: new Date().getTime(),
-    description: "Recolectar piedra del alma",
-    done: false,
-  },
-  {
-    id: new Date().getTime() * 3,
-    description: "Recolectar piedra del tiempo",
-    done: false,
-  },
-];
+const initialState = [];
+
+// obtenemos del local storage lo que haya para cargarlo al useReducer
+const init = () =>{
+  return JSON.parse(localStorage.getItem('todos')) || []  //si es nulo el localStorage devolvemos un array vacio
+}
 
 const TodoApp = () => {
-  const [todos, dispatch] = useReducer(todoReducer, initialState); //el reducer no se ejecuta es decur todoReducer() NO, solo se pasa la referecia
+  //usamos la tercera funcion del useReducer para mantener el state del localStorage y asi no se pierda la info
+  const [todos, dispatch] = useReducer(todoReducer, initialState, init); //el reducer no se ejecuta es decur todoReducer() NO, solo se pasa la referecia
 
-  const handleNewTodo = (todo) => {
-    console.log({todo})
-  
+  //use effect para que cuando cambien los todos los almacenamos en el local storage
+  useEffect(() => {
+    //guardamos unicamente strings en el local storage
+    localStorage.setItem('todos', JSON.stringify(todos))
+
+
+  }, [todos])
+
+  const handleNewTodo = (todo) => {  
     const action = {
       type: '[TODO] Add Todo',
       payload: todo
