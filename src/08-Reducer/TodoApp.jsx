@@ -19,8 +19,6 @@ const TodoApp = () => {
   useEffect(() => {
     //guardamos unicamente strings en el local storage
     localStorage.setItem('todos', JSON.stringify(todos))
-
-
   }, [todos])
 
   const handleNewTodo = (todo) => {  
@@ -30,6 +28,15 @@ const TodoApp = () => {
     }
 
     dispatch(action) //hacemos el dispatch de la accion para que la maneje el reducer
+  }
+
+  const handleDeleteTodo = (id) => {
+    const action = {
+      type: '[TODO] delete Todo',
+      payload: id
+    }
+
+    dispatch(action)
   }
 
 
@@ -42,7 +49,7 @@ const TodoApp = () => {
 
       <div className="row">
         <div className="col-7">
-         <TodoList todos = {todos}/>
+         <TodoList todos = {todos} onDeleteTodo = {id => handleDeleteTodo(id)}/>
         </div>
 
         <div className="col-5">
