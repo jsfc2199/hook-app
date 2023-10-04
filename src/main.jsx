@@ -1,10 +1,12 @@
-import ReactDOM from 'react-dom/client'
+import ReactDOM from "react-dom/client";
 
-import './08-Reducer/intro-reducer'
-import TodoApp from './08-Reducer/TodoApp';
+import "./08-Reducer/intro-reducer";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+import MainApp from "./09-useContext/Main";
+import { BrowserRouter } from "react-router-dom";
 
-    <TodoApp/>
-
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <MainApp />
+  </BrowserRouter>
+);
