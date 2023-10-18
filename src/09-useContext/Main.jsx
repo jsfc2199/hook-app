@@ -3,10 +3,11 @@ import HomePage from "./HomePage";
 import LoginPage from "./LoginPage";
 import AboutPage from "./AboutPage";
 import NavBar from './NavLink';
+import UserProvider from "./context/UserProvider";
 
 const MainApp = () => {
   return (
-    <>
+    <UserProvider>
       <h1>Main App</h1>
       <NavBar/>
       <hr />
@@ -26,7 +27,7 @@ const MainApp = () => {
         <Route path="/*" element={<Navigate to={"/about"}/>} />
 
       </Routes>
-    </>
+    </UserProvider>
   );
 };
 
