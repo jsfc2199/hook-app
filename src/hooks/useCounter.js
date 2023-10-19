@@ -5,12 +5,13 @@ export const useCounter = (initialState = 10) =>{
 
     const [counter, setCounter] = useState(initialState)
     
-    const increment = () => {
-        setCounter(counter + 1)
+    //se modifica para la prueba unitaria y cuando se llame increment 2 veces o mas tenga en cuenta el valor actual
+    const increment = (value = 1) => {
+        setCounter((current)=>current + value)
     }
 
-    const decrement = () => {
-        setCounter(counter - 1)
+    const decrement = (value = 1) => {
+        setCounter((current)=>current - value)
     }
 
     const reset = () => {

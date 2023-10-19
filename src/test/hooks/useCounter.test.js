@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-const { renderHook } = require("@testing-library/react")
+const { renderHook, act } = require("@testing-library/react")
+
 import { useCounter } from './../../hooks/useCounter';
 
 describe('pruebas en use counter', () => {
@@ -18,6 +19,50 @@ describe('pruebas en use counter', () => {
     const {result} = renderHook(() => useCounter(100))
     expect(result.current.counter).toBe(100)
   })
+  
+  //pruebas paras las funciones del custom hook
+  test('debe de incrementar el contador ', () => {
+    
+    const {result} = renderHook(() => useCounter(100))
+    const { increment} = result.current
+
+    //ñas funciones dentro de un hook deben ser usadas con un act sino se ve un error
+    act(() =>{
+        increment();
+        increment(2);
+    })
+
+    //se debe usar asi porque si desestructuramos el counter del result.current no tendremos el valor real aun
+    expect(result.current.counter).toBe(103)
+  })
+
+  test('debe de decrementar el contador ', () => {
+    
+    const {result} = renderHook(() => useCounter(100))
+    const { decrement} = result.current
+
+    act(() =>{
+        decrement();   
+        decrement(5);  
+    })
+
+    expect(result.current.counter).toBe(94)
+  })
+
+  test('debe de resetear el contador ', () => {
+    
+    const {result} = renderHook(() => useCounter(100))
+    const { reset, decrement} = result.current
+
+    act(() =>{
+        decrement();   
+        decrement(5);  
+        reset()
+    })
+
+    expect(result.current.counter).toBe(100)
+  })
+  
   
   
 })
