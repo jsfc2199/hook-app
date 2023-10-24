@@ -7,7 +7,9 @@ const HomePage = () => {
       <>
       <h1>HomePage App</h1>
       <hr />
-      Hola {user?.nombre}
+      <pre aria-label="pre">
+        {user?.nombre}
+      </pre>
       </>
     )
   }
