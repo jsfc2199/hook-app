@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import MultipleCustomHooks from "./../../../03-Examples/MultipleCustomHooks";
-import { useFetch } from "../../../hooks/useFetch"; //apuntamos directamente a lo que queremos mockear
-import { useCounter } from "../../../hooks/useCounter";
+import MultipleCustomHooks from "../../03-Examples/MultipleCustomHooks";
+import { useFetch } from "../../hooks/useFetch"; //apuntamos directamente a lo que queremos mockear
+import { useCounter } from "../../hooks/useCounter";
 //porque al importarlo normlamente será ../../../hooks
 
 /* eslint-disable no-undef */
 
 //mock del fetch
-jest.mock("../../../hooks/useFetch");
-jest.mock("../../../hooks/useCounter");
+jest.mock("../../hooks/useFetch");
+jest.mock("../../hooks/useCounter");
 
 describe("Pruebas en multiple custom hook", () => {
 
