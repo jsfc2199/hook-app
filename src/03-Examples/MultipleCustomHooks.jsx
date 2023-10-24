@@ -23,7 +23,7 @@ const MultipleCustomHooks = () => {
         <Quote name = {name} status={status}/>
       )}
 
-      <button className="btn btn-primary" onClick={randomNumber}>Next character</button>
+      <button className="btn btn-primary" disabled = {isLoading} onClick={randomNumber}>Next character</button>
     </>
   );
 };
